@@ -8,7 +8,8 @@ USER = "slashneck"
 
 C = dict(bg="#07070a", panel="#0b0a0f", ink="#d9d2c5", dim="#6f6a62",
          rust="#c14a2a", rusthi="#e2532e", amber="#d99a4e",
-         teal="#4fb3a8", violet="#8a6bb0", line="#1d1b23")
+         teal="#4fb3a8", violet="#8a6bb0", steel="#6b8fb8",
+         ghost="#57525e", line="#1d1b23")
 
 MONO = "ui-monospace,SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono',monospace"
 
@@ -19,6 +20,8 @@ LANGS = {
   "Precut-Pro": {},
   "Snappy":     {"C#": 356439, "JavaScript": 156177, "CSS": 53905,
                  "HTML": 29141, "PowerShell": 7016, "Python": 4492},
+  "Cargo":      {"JavaScript": 364180, "C#": 43148, "CSS": 42541,
+                 "PowerShell": 5374, "HTML": 1001},
 }
 
 CARDS = [
@@ -38,6 +41,15 @@ CARDS = [
        lines=["clipping, just a little better.",
               "screen capture that stays out of the way."],
        lang="c#", tag="OFFLINE"),
+  dict(slug="cargo", repo="Cargo", layer="05", accent=C["steel"],
+       lines=["after effects projects, neatly packed.",
+              "opens .aep files without after effects."],
+       lang="javascript", tag="OFFLINE"),
+  # the empty slot. no repo behind it yet — that's the point.
+  dict(slug="soon", repo="untitled", layer="06", accent=C["ghost"], ghost=True,
+       lines=["a sixth device is already running here.",
+              "it hasn't been given a name yet."],
+       lang="--", tag="SOON"),
 ]
 
 
@@ -186,64 +198,75 @@ CARD_CSS = """<style>
 text{font-family:__MONO__}
 @keyframes scan{0%{transform:translateY(-10px);opacity:0}8%{opacity:.9}92%{opacity:.9}100%{transform:translateY(150px);opacity:0}}
 @keyframes blink{0%,47%{opacity:1}50%,97%{opacity:.12}}
+@keyframes pulse{0%,100%{opacity:.30}50%{opacity:.75}}
+@keyframes crawl{0%{stroke-dashoffset:0}100%{stroke-dashoffset:-18px}}
 .sc{animation:scan 5.5s linear infinite}
 .bk{animation:blink 1.8s infinite steps(1,end)}
+.pl{animation:pulse 3.4s ease-in-out infinite}
+.cr{animation:blink 1.1s infinite steps(1,end)}
+.dash{animation:crawl 3s linear infinite}
 </style>""".replace("__MONO__", MONO)
 
 
 def card(c):
+    """One repo card. `ghost=True` renders the unnamed slot: dashed, dimmed, no link."""
     W, H = 420, 146
-    size = human(sum(LANGS.get(c["repo"], {}).values()))
     a = c["accent"]
+    g = c.get("ghost", False)
+    size = human(sum(LANGS.get(c["repo"], {}).values()))
+    name = c["repo"].lower()
     tagw = len(c["tag"]) * 6.6 + 16
-    return '''%s%s%s
-<defs><linearGradient id="gl" x1="0" y1="0" x2="1" y2="1">
-  <stop offset="0" stop-color="%s" stop-opacity=".16"/>
-  <stop offset="60%%" stop-color="%s" stop-opacity="0"/>
-</linearGradient>
-<linearGradient id="scg" x1="0" y1="0" x2="1" y2="0">
-  <stop offset="0" stop-color="%s" stop-opacity="0"/>
-  <stop offset="50%%" stop-color="%s" stop-opacity=".85"/>
-  <stop offset="100%%" stop-color="%s" stop-opacity="0"/>
-</linearGradient></defs>
-<rect width="%d" height="%d" fill="%s"/>
-<rect width="%d" height="%d" fill="url(#gl)"/>
-<rect x="0" y="0" width="3" height="%d" fill="%s" opacity=".9"/>
-<rect x=".5" y=".5" width="%d" height="%d" fill="none" stroke="%s" stroke-width="1" opacity=".30"/>
-<text x="22" y="42" font-size="21" font-weight="700" letter-spacing="1.2" fill="%s">%s</text>
-<text x="%d" y="30" text-anchor="end" font-size="9.5" letter-spacing="2.2" fill="%s">layer:%s</text>
-<rect x="22" y="55" width="%d" height="1" fill="%s" opacity=".22"/>
-<text x="22" y="80" font-size="11.5" fill="%s">%s</text>
-<text x="22" y="97" font-size="11.5" fill="%s">%s</text>
-<circle cx="26" cy="123" r="3.4" fill="%s"/>
-<text x="38" y="127" font-size="10.5" letter-spacing="1.4" fill="%s" opacity=".72">%s</text>
-<text x="%.0f" y="127" font-size="10.5" letter-spacing="1.4" fill="%s">// %s</text>
-<rect x="%.0f" y="113" width="%.0f" height="19" fill="%s" opacity=".13"/>
-<text x="%d" y="126.5" text-anchor="end" font-size="9.5" letter-spacing="1.8" fill="%s">%s</text>
-<circle cx="%d" cy="%d" r="2.6" fill="%s" class="bk" opacity=".8"/>
-<rect class="sc" x="3" y="0" width="%d" height="1.2" fill="url(#scg)" opacity=".26"/>
-<rect width="%d" height="%d" fill="url(#sl)" opacity=".55"/>
-<rect width="%d" height="%d" filter="url(#grain)" opacity=".06"/>
-</svg>''' % (svg(W, H, c["repo"]), CARD_CSS, DEFS,
-             a, a, a, a, a,
-             W, H, C["panel"],
-             W, H,
-             H, a,
-             W - 1, H - 1, a,
-             C["ink"], c["repo"].lower(),
-             W - 18, C["dim"], c["layer"],
-             W - 70, a,
-             C["dim"], c["lines"][0],
-             C["dim"], c["lines"][1],
-             a,
-             C["ink"], c["lang"],
-             38 + len(c["lang"]) * 7.2 + 14, C["dim"], size,
-             W - 18 - tagw, tagw, a,
-             W - 26, a, c["tag"],
-             W - 18, H - 14, a,
-             W - 3,
-             W, H,
-             W, H)
+    p = []
+
+    p.append('<defs><linearGradient id="gl" x1="0" y1="0" x2="1" y2="1">'
+             '<stop offset="0" stop-color="%s" stop-opacity="%s"/>'
+             '<stop offset="60%%" stop-color="%s" stop-opacity="0"/></linearGradient>'
+             '<linearGradient id="scg" x1="0" y1="0" x2="1" y2="0">'
+             '<stop offset="0" stop-color="%s" stop-opacity="0"/>'
+             '<stop offset="50%%" stop-color="%s" stop-opacity=".85"/>'
+             '<stop offset="100%%" stop-color="%s" stop-opacity="0"/></linearGradient></defs>'
+             % (a, ".05" if g else ".16", a, a, a, a))
+    p.append('<rect width="%d" height="%d" fill="%s"/>' % (W, H, C["panel"]))
+    p.append('<rect width="%d" height="%d" fill="url(#gl)"/>' % (W, H))
+
+    # left accent bar + border: solid for a real repo, dashed and drifting for the slot
+    if g:
+        p.append('<rect x="0" y="0" width="3" height="%d" fill="%s" opacity=".45" class="pl"/>' % (H, a))
+        p.append('<rect x=".5" y=".5" width="%d" height="%d" fill="none" stroke="%s" stroke-width="1" '
+                 'stroke-dasharray="6 5" opacity=".34" class="dash"/>' % (W - 1, H - 1, a))
+    else:
+        p.append('<rect x="0" y="0" width="3" height="%d" fill="%s" opacity=".9"/>' % (H, a))
+        p.append('<rect x=".5" y=".5" width="%d" height="%d" fill="none" stroke="%s" stroke-width="1" '
+                 'opacity=".30"/>' % (W - 1, H - 1, a))
+
+    p.append('<text x="22" y="42" font-size="21" font-weight="700" letter-spacing="1.2" fill="%s"%s>%s</text>'
+             % (C["dim"] if g else C["ink"], ' opacity=".85"' if g else "", name))
+    if g:  # a cursor still waiting for the name to be typed
+        p.append('<rect x="%.0f" y="27" width="11" height="18" fill="%s" opacity=".55" class="cr"/>'
+                 % (22 + len(name) * 13.0 + 6, a))
+    p.append('<text x="%d" y="30" text-anchor="end" font-size="9.5" letter-spacing="2.2" fill="%s">layer:%s</text>'
+             % (W - 18, C["dim"], c["layer"]))
+    p.append('<rect x="22" y="55" width="%d" height="1" fill="%s" opacity=".22"/>' % (W - 70, a))
+    for i, ln in enumerate(c["lines"]):
+        p.append('<text x="22" y="%d" font-size="11.5" fill="%s"%s>%s</text>'
+                 % (80 + i * 17, C["dim"], ' opacity=".8"' if g else "", ln))
+
+    p.append('<circle cx="26" cy="123" r="3.4" fill="%s"%s/>' % (a, ' opacity=".6"' if g else ""))
+    p.append('<text x="38" y="127" font-size="10.5" letter-spacing="1.4" fill="%s" opacity=".72">%s</text>'
+             % (C["dim"] if g else C["ink"], c["lang"]))
+    p.append('<text x="%.0f" y="127" font-size="10.5" letter-spacing="1.4" fill="%s">// %s</text>'
+             % (38 + len(c["lang"]) * 7.2 + 14, C["dim"], size))
+    p.append('<rect x="%.0f" y="113" width="%.0f" height="19" fill="%s" opacity="%s"%s/>'
+             % (W - 18 - tagw, tagw, a, ".09" if g else ".13", ' class="pl"' if g else ""))
+    p.append('<text x="%d" y="126.5" text-anchor="end" font-size="9.5" letter-spacing="1.8" fill="%s"%s>%s</text>'
+             % (W - 26, a, ' opacity=".8"' if g else "", c["tag"]))
+    p.append('<circle cx="%d" cy="%d" r="2.6" fill="%s" class="%s" opacity=".8"/>'
+             % (W - 18, H - 14, a, "pl" if g else "bk"))
+    p.append('<rect class="sc" x="3" y="0" width="%d" height="1.2" fill="url(#scg)" opacity="%s"/>'
+             % (W - 3, ".14" if g else ".26"))
+    p.append('<rect width="%d" height="%d" fill="url(#sl)" opacity=".55"/>' % (W, H))
+    p.append('<rect width="%d" height="%d" filter="url(#grain)" opacity=".06"/>' % (W, H))
+    return svg(W, H, c["repo"]) + CARD_CSS + DEFS + "".join(p) + "</svg>"
 
 
 # ───────────────────────────────────────────────────────────── signal bar
@@ -277,7 +300,7 @@ def signal():
     return '''%s<style>text{font-family:%s}</style>%s
 <rect width="%d" height="%d" fill="%s"/>
 <text x="24" y="26" font-size="10.5" letter-spacing="3" fill="%s">SIGNAL  //  what the machine is speaking</text>
-<text x="%d" y="26" text-anchor="end" font-size="10.5" letter-spacing="1.6" fill="%s">%s across 4 nodes</text>
+<text x="%d" y="26" text-anchor="end" font-size="10.5" letter-spacing="1.6" fill="%s">%s across %d nodes</text>
 <rect x="%d" y="%d" width="%d" height="%d" fill="%s"/>
 %s%s
 <rect width="%d" height="%d" fill="url(#sl)" opacity=".5"/>
@@ -285,7 +308,7 @@ def signal():
 </svg>''' % (svg(W, H, "signal"), MONO, DEFS,
              W, H, C["bg"],
              C["rust"],
-             W - 24, C["dim"], human(total),
+             W - 24, C["dim"], human(total), len([c for c in CARDS if not c.get("ghost")]),
              bx, by, bw, bh, C["line"],
              "".join(segs), "".join(keys),
              W, H, W, H)
