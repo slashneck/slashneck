@@ -8,7 +8,7 @@ USER = "slashneck"
 
 C = dict(bg="#07070a", panel="#0b0a0f", ink="#d9d2c5", dim="#6f6a62",
          rust="#c14a2a", rusthi="#e2532e", amber="#d99a4e",
-         teal="#4fb3a8", violet="#8a6bb0", steel="#6b8fb8",
+         teal="#4fb3a8", violet="#8a6bb0", steel="#6b8fb8", moss="#79a35c",
          ghost="#57525e", line="#1d1b23")
 
 MONO = "ui-monospace,SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono',monospace"
@@ -22,6 +22,7 @@ LANGS = {
                  "HTML": 29141, "PowerShell": 7016, "Python": 4492},
   "Cargo":      {"JavaScript": 364180, "C#": 43148, "CSS": 42541,
                  "PowerShell": 5374, "HTML": 1001},
+  "BetterComfy": {"Python": 483901, "C#": 32621, "PowerShell": 6014},
 }
 
 CARDS = [
@@ -45,11 +46,10 @@ CARDS = [
        lines=["after effects projects, neatly packed.",
               "opens .aep files without after effects."],
        lang="javascript", tag="OFFLINE"),
-  # the empty slot. no repo behind it yet — that's the point.
-  dict(slug="soon", repo="untitled", layer="06", accent=C["ghost"], ghost=True,
-       lines=["a sixth device is already running here.",
-              "it hasn't been given a name yet."],
-       lang="--", tag="SOON"),
+  dict(slug="bettercomfy", repo="BetterComfy", layer="06", accent=C["moss"],
+       lines=["comfyui, without a single node to wire.",
+              "pick a model, say it, press generate."],
+       lang="python", tag="OFFLINE"),
 ]
 
 
