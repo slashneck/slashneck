@@ -8,22 +8,18 @@ USER = "slashneck"
 
 C = dict(bg="#07070a", panel="#0b0a0f", ink="#d9d2c5", dim="#6f6a62",
          rust="#c14a2a", rusthi="#e2532e", amber="#d99a4e",
-         teal="#4fb3a8", violet="#8a6bb0", steel="#6b8fb8", moss="#79a35c",
+         teal="#4fb3a8", violet="#8a6bb0", steel="#6b8fb8", moss="#79a35c", lemon="#ddc74f",
          ghost="#57525e", line="#1d1b23")
 
 MONO = "ui-monospace,SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono',monospace"
 
-# language bytes per repo (refresh with --fetch)
-LANGS = {
-  "Lockwell":   {"C#": 1290568, "PowerShell": 53456},
-  "Onyx":       {"TypeScript": 227924, "JavaScript": 56064, "CSS": 26698, "HTML": 581},
-  "Precut-Pro": {},
-  "Snappy":     {"C#": 356439, "JavaScript": 156177, "CSS": 53905,
-                 "HTML": 29141, "PowerShell": 7016, "Python": 4492},
-  "Cargo":      {"JavaScript": 364180, "C#": 43148, "CSS": 42541,
-                 "PowerShell": 5374, "HTML": 1001},
-  "BetterComfy": {"Python": 483901, "C#": 32621, "PowerShell": 6014},
-}
+# language bytes per repo, cached in tools/langs.json — refresh with: gen.py --fetch
+LANGS_FILE = os.path.join(HERE, "langs.json")
+try:
+    with open(LANGS_FILE, encoding="utf-8") as _fh:
+        LANGS = json.load(_fh)
+except (OSError, ValueError):
+    LANGS = {}
 
 CARDS = [
   dict(slug="lockwell", repo="Lockwell", layer="01", accent=C["rust"],
@@ -50,6 +46,15 @@ CARDS = [
        lines=["comfyui, without a single node to wire.",
               "pick a model, say it, press generate."],
        lang="python", tag="OFFLINE"),
+  dict(slug="lemonade", repo="Lemonade", layer="07", accent=C["lemon"],
+       lines=["a lyric pad for rap and hip-hop.",
+              "offline rhymes, your beat, your takes."],
+       lang="javascript", tag="LOCAL"),
+  # the empty slot. no repo behind it yet — that's the point.
+  dict(slug="soon", repo="untitled", layer="08", accent=C["ghost"], ghost=True,
+       lines=["something is already running here.",
+              "it hasn't been given a name yet."],
+       lang="--", tag="SOON"),
 ]
 
 
@@ -291,8 +296,10 @@ def signal():
         x += w
         delay += 0.09
     kx = float(bx)
-    for i, (name, n) in enumerate(order[:6]):
+    for i, (name, n) in enumerate(order):
         lbl = "%s %.1f%%" % (name.lower(), 100 * n / total)
+        if kx + 26 + len(lbl) * 6.2 > W - 24:
+            break  # label every segment that fits; never leave a labelled gap
         keys.append('<rect x="%.0f" y="%d" width="7" height="7" fill="%s" opacity=".92"/>'
                     '<text x="%.0f" y="%d" font-size="10" letter-spacing="1" fill="%s">%s</text>'
                     % (kx, by + 29, pal[i % len(pal)], kx + 13, by + 36, C["dim"], lbl))
@@ -349,12 +356,24 @@ def footer():
 
 
 def fetch():
-    for r in list(LANGS):
+    """Re-pull language bytes for every real card and cache them in langs.json."""
+    for c in CARDS:
+        if c.get("ghost"):
+            continue
+        r = c["repo"]
         out = subprocess.run(["gh", "api", "repos/%s/%s/languages" % (USER, r)],
                              capture_output=True, text=True, shell=(os.name == "nt"))
-        if out.returncode == 0:
-            LANGS[r] = json.loads(out.stdout)
-    print("refreshed language data")
+        if out.returncode != 0:
+            print("  ! %-12s could not be read, keeping cached value" % r)
+            continue
+        LANGS[r] = json.loads(out.stdout)
+        print("  %-12s %s" % (r, human(sum(LANGS[r].values()))))
+    for stale in [k for k in LANGS if k not in {c["repo"] for c in CARDS}]:
+        del LANGS[stale]
+    with open(LANGS_FILE, "w", encoding="utf-8") as fh:
+        json.dump(LANGS, fh, indent=2, sort_keys=True)
+        fh.write(chr(10))
+    print("cached to tools/langs.json")
 
 
 if __name__ == "__main__":

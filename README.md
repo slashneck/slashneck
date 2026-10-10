@@ -25,6 +25,8 @@ the wired isn't somewhere else. it's this room, with the lights off.
   <a href="https://github.com/slashneck/Snappy"><img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/card-snappy.svg" width="404" alt="Snappy — clipping, just a little better"></a>
   <a href="https://github.com/slashneck/Cargo"><img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/card-cargo.svg" width="404" alt="Cargo — after effects projects, neatly packed"></a>
   <a href="https://github.com/slashneck/BetterComfy"><img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/card-bettercomfy.svg" width="404" alt="BetterComfy — comfyui, without the wires"></a>
+  <a href="https://github.com/slashneck/Lemonade"><img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/card-lemonade.svg" width="404" alt="Lemonade — lyrics, freshly squeezed"></a>
+  <img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/card-soon.svg" width="404" alt="untitled — soon">
 </div>
 
 <details>
