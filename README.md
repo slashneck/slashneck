@@ -6,8 +6,9 @@
 
 &gt; i don't remember logging on.
 
-somewhere behind a windows machine, making small offline things.<br>
-no accounts. no servers. no telemetry — nothing here phones home.<br>
+somewhere behind a windows machine, making small local-first things.<br>
+no telemetry, no analytics, no backend of mine. when something does reach the<br>
+network it is github asking about updates, or a service you picked yourself.<br>
 the wired isn't somewhere else. it's this room, with the lights off.
 
 </samp>
@@ -26,7 +27,7 @@ the wired isn't somewhere else. it's this room, with the lights off.
   <a href="https://github.com/slashneck/Cargo"><img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/card-cargo.svg" width="404" alt="Cargo — after effects projects, neatly packed"></a>
   <a href="https://github.com/slashneck/BetterComfy"><img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/card-bettercomfy.svg" width="404" alt="BetterComfy — comfyui, without the wires"></a>
   <a href="https://github.com/slashneck/Lemonade"><img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/card-lemonade.svg" width="404" alt="Lemonade — lyrics, freshly squeezed"></a>
-  <img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/card-soon.svg" width="404" alt="untitled — soon">
+  <a href="https://github.com/slashneck/Riffle"><img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/card-riffle.svg" width="404" alt="Riffle — soundcloud, truly shuffled"></a>
 </div>
 
 <details>
@@ -48,7 +49,7 @@ everything above this line is built for one machine. mine. maybe yours.
 </details>
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/footer.svg" width="880" alt="connection // local only">
+  <img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/footer.svg" width="880" alt="connection // never to me">
 </div>
 
 <!--

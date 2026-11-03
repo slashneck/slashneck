@@ -1,8 +1,8 @@
 {
   "BetterComfy": {
     "C#": 32621,
-    "PowerShell": 6014,
-    "Python": 733089
+    "PowerShell": 5990,
+    "Python": 990844
   },
   "Cargo": {
     "C#": 43148,
@@ -13,9 +13,9 @@
   },
   "Lemonade": {
     "C#": 32681,
-    "CSS": 49006,
-    "HTML": 16098,
-    "JavaScript": 202764,
+    "CSS": 67298,
+    "HTML": 18379,
+    "JavaScript": 307960,
     "PowerShell": 3899
   },
   "Lockwell": {
@@ -29,12 +29,18 @@
     "TypeScript": 227924
   },
   "Precut-Pro": {},
+  "Riffle": {
+    "C#": 233456,
+    "HTML": 10868,
+    "JavaScript": 5938,
+    "PowerShell": 3768
+  },
   "Snappy": {
-    "C#": 491515,
-    "CSS": 62842,
-    "HTML": 30162,
-    "JavaScript": 179966,
-    "PowerShell": 7016,
+    "C#": 677513,
+    "CSS": 365496,
+    "HTML": 33979,
+    "JavaScript": 1492705,
+    "PowerShell": 7479,
     "Python": 4492
   }
 }

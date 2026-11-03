@@ -8,7 +8,7 @@ USER = "slashneck"
 
 C = dict(bg="#07070a", panel="#0b0a0f", ink="#d9d2c5", dim="#6f6a62",
          rust="#c14a2a", rusthi="#e2532e", amber="#d99a4e",
-         teal="#4fb3a8", violet="#8a6bb0", steel="#6b8fb8", moss="#79a35c", lemon="#ddc74f",
+         teal="#4fb3a8", violet="#8a6bb0", steel="#6b8fb8", moss="#79a35c", lemon="#ddc74f", rose="#c0608f",
          ghost="#57525e", line="#1d1b23")
 
 MONO = "ui-monospace,SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono',monospace"
@@ -25,11 +25,11 @@ CARDS = [
   dict(slug="lockwell", repo="Lockwell", layer="01", accent=C["rust"],
        lines=["local-only encrypted vault for windows.",
               "argon2id + aes-256-gcm. no account, no server."],
-       lang="c#", tag="OFFLINE"),
+       lang="c#", tag="UPDATES ONLY"),
   dict(slug="onyx", repo="Onyx", layer="02", accent=C["teal"],
        lines=["local music, made visible.",
               "a player for the files you actually own."],
-       lang="typescript", tag="OFFLINE"),
+       lang="typescript", tag="UPDATES ONLY"),
   dict(slug="precut-pro", repo="Precut-Pro", layer="03", accent=C["violet"],
        lines=["searchable anime precut library for amv",
               "editors, with the editing tools built in."],
@@ -37,24 +37,23 @@ CARDS = [
   dict(slug="snappy", repo="Snappy", layer="04", accent=C["amber"],
        lines=["clipping, just a little better.",
               "screen capture that stays out of the way."],
-       lang="c#", tag="OFFLINE"),
+       lang="c#", tag="UPDATES ONLY"),
   dict(slug="cargo", repo="Cargo", layer="05", accent=C["steel"],
        lines=["after effects projects, neatly packed.",
               "opens .aep files without after effects."],
-       lang="javascript", tag="OFFLINE"),
+       lang="javascript", tag="UPDATES ONLY"),
   dict(slug="bettercomfy", repo="BetterComfy", layer="06", accent=C["moss"],
        lines=["comfyui, without a single node to wire.",
               "pick a model, say it, press generate."],
-       lang="python", tag="OFFLINE"),
+       lang="python", tag="OPT-IN ONLINE"),
   dict(slug="lemonade", repo="Lemonade", layer="07", accent=C["lemon"],
        lines=["a lyric pad for rap and hip-hop.",
               "offline rhymes, your beat, your takes."],
-       lang="javascript", tag="LOCAL"),
-  # the empty slot. no repo behind it yet — that's the point.
-  dict(slug="soon", repo="untitled", layer="08", accent=C["ghost"], ghost=True,
-       lines=["something is already running here.",
-              "it hasn't been given a name yet."],
-       lang="--", tag="SOON"),
+       lang="javascript", tag="OPT-IN ONLINE"),
+  dict(slug="riffle", repo="Riffle", layer="08", accent=C["rose"],
+       lines=["a true shuffle for your soundcloud.",
+              "merge playlists, every song once."],
+       lang="c#", tag="ONLINE"),
 ]
 
 
@@ -338,9 +337,9 @@ def footer():
 <rect x="24" y="16" width="%d" height="1" fill="url(#fg)"/>
 <text x="24" y="44" font-size="12" letter-spacing="2.6" fill="%s" opacity=".78">shut the door. the wired is already inside.</text>
 <text x="24" y="63" font-size="10" letter-spacing="1.8" fill="%s" class="dr">.enilffo yats .no seye ruoy peek</text>
-<text x="%d" y="44" text-anchor="end" font-size="10.5" letter-spacing="2" fill="%s" opacity=".75">connection // local only</text>
+<text x="%d" y="44" text-anchor="end" font-size="10.5" letter-spacing="2" fill="%s" opacity=".75">connection // never to me</text>
 <circle cx="%d" cy="40" r="3" fill="%s" class="bk"/>
-<text x="%d" y="63" text-anchor="end" font-size="9.5" letter-spacing="1.6" fill="%s">[ no telemetry ] [ no account ] [ no server ]</text>
+<text x="%d" y="63" text-anchor="end" font-size="9.5" letter-spacing="1.6" fill="%s">[ no telemetry ] [ no analytics ] [ no server of mine ]</text>
 <rect width="%d" height="%d" fill="url(#sl)" opacity=".5"/>
 <rect width="%d" height="%d" filter="url(#grain)" opacity=".06"/>
 </svg>''' % (svg(W, H, "close the door"), MONO, DEFS,
