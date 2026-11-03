@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/header.svg" width="880" alt="slashneck // the wired">
+  <img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/header.svg?v=2" width="880" alt="slashneck // the wired">
 </div>
 
 <samp>
@@ -14,20 +14,20 @@ the wired isn't somewhere else. it's this room, with the lights off.
 </samp>
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/signal.svg" width="880" alt="signal">
+  <img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/signal.svg?v=2" width="880" alt="signal">
 </div>
 
 ### <samp>// devices on this node</samp>
 
 <div align="center">
-  <a href="https://github.com/slashneck/Lockwell"><img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/card-lockwell.svg" width="404" alt="Lockwell — local-only encrypted vault for windows"></a>
-  <a href="https://github.com/slashneck/Onyx"><img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/card-onyx.svg" width="404" alt="Onyx — local music, made visible"></a>
-  <a href="https://github.com/slashneck/Precut-Pro"><img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/card-precut-pro.svg" width="404" alt="Precut-Pro — anime precut library for amv editors"></a>
-  <a href="https://github.com/slashneck/Snappy"><img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/card-snappy.svg" width="404" alt="Snappy — clipping, just a little better"></a>
-  <a href="https://github.com/slashneck/Cargo"><img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/card-cargo.svg" width="404" alt="Cargo — after effects projects, neatly packed"></a>
-  <a href="https://github.com/slashneck/BetterComfy"><img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/card-bettercomfy.svg" width="404" alt="BetterComfy — comfyui, without the wires"></a>
-  <a href="https://github.com/slashneck/Lemonade"><img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/card-lemonade.svg" width="404" alt="Lemonade — lyrics, freshly squeezed"></a>
-  <a href="https://github.com/slashneck/Riffle"><img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/card-riffle.svg" width="404" alt="Riffle — soundcloud, truly shuffled"></a>
+  <a href="https://github.com/slashneck/Lockwell"><img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/card-lockwell.svg?v=2" width="404" alt="Lockwell — local-only encrypted vault for windows"></a>
+  <a href="https://github.com/slashneck/Onyx"><img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/card-onyx.svg?v=2" width="404" alt="Onyx — local music, made visible"></a>
+  <a href="https://github.com/slashneck/Precut-Pro"><img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/card-precut-pro.svg?v=2" width="404" alt="Precut-Pro — anime precut library for amv editors"></a>
+  <a href="https://github.com/slashneck/Snappy"><img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/card-snappy.svg?v=2" width="404" alt="Snappy — clipping, just a little better"></a>
+  <a href="https://github.com/slashneck/Cargo"><img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/card-cargo.svg?v=2" width="404" alt="Cargo — after effects projects, neatly packed"></a>
+  <a href="https://github.com/slashneck/BetterComfy"><img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/card-bettercomfy.svg?v=2" width="404" alt="BetterComfy — comfyui, without the wires"></a>
+  <a href="https://github.com/slashneck/Lemonade"><img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/card-lemonade.svg?v=2" width="404" alt="Lemonade — lyrics, freshly squeezed"></a>
+  <a href="https://github.com/slashneck/Riffle"><img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/card-riffle.svg?v=2" width="404" alt="Riffle — soundcloud, truly shuffled"></a>
 </div>
 
 <details>
@@ -49,7 +49,7 @@ everything above this line is built for one machine. mine. maybe yours.
 </details>
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/footer.svg" width="880" alt="connection // never to me">
+  <img src="https://raw.githubusercontent.com/slashneck/slashneck/main/assets/footer.svg?v=2" width="880" alt="connection // never to me">
 </div>
 
 <!--
